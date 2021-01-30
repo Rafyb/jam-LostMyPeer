@@ -13,10 +13,11 @@ public class Controller : MonoBehaviour
     public float speedMove;
     public float speedJump;
     public float speedRotate;
+    public float rotateSensibility;
 
     [Header("Camera")]
     public float cameraPower;
-    public float cameraSensibility;
+    
 
     private bool canJump;
 
@@ -104,7 +105,7 @@ public class Controller : MonoBehaviour
         if (horizontalMove != 0f || verticallMove != 0f)
         {
             // Player rotation with jostick
-            if(Mathf.Abs(horizontalMove) >= cameraSensibility)
+            if(Mathf.Abs(horizontalMove) >= rotateSensibility)
             {
                 Quaternion rotate = Quaternion.identity;
                 rotate.eulerAngles = new Vector3(270, player.transform.rotation.eulerAngles.y + horizontalMove, 0);

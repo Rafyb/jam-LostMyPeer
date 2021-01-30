@@ -49,5 +49,5 @@ MonoBehaviour:
   speedMove: 7
   speedJump: 7
   speedRotate: 210
+  rotateSensibility: 0.15
   cameraPower: 0.5
-  cameraSensibility: 0.15
