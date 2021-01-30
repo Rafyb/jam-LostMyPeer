@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-
+    [Header("Components")]
     public GameObject player;
     public GameObject targetView;
-
     public BottomDetector detector;
-    private bool canJump;
 
-    public float speed;
-    public float rotationPower;
+    [Header("Controls")]
+    public float speedMove;
+    public float speedJump;
+    public float speedRotate;
+
+    [Header("Camera")]
+    public float cameraPower;
+    public float cameraSensibility;
+
+    private bool canJump;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +33,7 @@ public class Controller : MonoBehaviour
     {
         // Target stay focus on player pos
         Vector3 pos = player.transform.position;
-        pos.y -= 0.5f;
+        pos.y -= 0.3f;
         targetView.transform.position = pos;
 
         Rotate();
@@ -56,7 +62,7 @@ public class Controller : MonoBehaviour
         {
             Debug.Log("Jump");
             canJump = false;
-            player.GetComponent<Rigidbody>().AddForce(new Vector3(0, speed, 0),ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(new Vector3(0, speedJump, 0),ForceMode.Impulse);
         }
     }
 
@@ -65,12 +71,12 @@ public class Controller : MonoBehaviour
 
         if (Input.GetAxis("Mouse X") != 0f || Input.GetAxis("Mouse Y") != 0f)
         {
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * (rotationPower*2), Vector3.up);
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * (rotationPower*2), Vector3.right);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * (cameraPower * 2), Vector3.up);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * (cameraPower * 2), Vector3.right);
         } else
         {
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RH") * rotationPower, Vector3.up);
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RV") * rotationPower, Vector3.right);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RH") * cameraPower, Vector3.up);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RV") * cameraPower, Vector3.right);
         }
 
         Vector3 angles = targetView.transform.localEulerAngles;
@@ -91,14 +97,14 @@ public class Controller : MonoBehaviour
 
     private void Move()
     {
-        float horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime * (speed*30);
+        float horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime * speedRotate;
 
-        float verticallMove = -Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        float verticallMove = -Input.GetAxis("Vertical") * Time.deltaTime * speedMove;
 
         if (horizontalMove != 0f || verticallMove != 0f)
         {
             // Player rotation with jostick
-            if(Mathf.Abs(horizontalMove) >= 0.15f)
+            if(Mathf.Abs(horizontalMove) >= cameraSensibility)
             {
                 Quaternion rotate = Quaternion.identity;
                 rotate.eulerAngles = new Vector3(270, player.transform.rotation.eulerAngles.y + horizontalMove, 0);
