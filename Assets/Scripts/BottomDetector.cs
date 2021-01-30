@@ -10,7 +10,6 @@ public class BottomDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Touched");
         OnTouchedGround?.Invoke();
     }
 }
