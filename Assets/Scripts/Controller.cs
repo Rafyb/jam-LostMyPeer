@@ -21,12 +21,15 @@ public class Controller : MonoBehaviour
 
     private bool fakeDeath;
     private bool canJump;
+    private float timedJump;
 
     // Start is called before the first frame update
     void Start()
     {
         canJump = true;
-        fakeDeath = false;
+        fakeDeath = true;
+        animator.SetBool("FakeDeath", fakeDeath);
+        timedJump = 0f;
 
         detector.OnTouchedGround += ResetJump;
     }
@@ -40,20 +43,21 @@ public class Controller : MonoBehaviour
         targetView.transform.position = pos;
 
         Rotate();
-
-        Move();
-
-        Jump();
-
         FakeDead();
+
+        if (!fakeDeath)
+        {
+            Move();
+            if(timedJump > 0.5f) Jump();
+            else timedJump += Time.deltaTime;
+        }
+
+
     }
 
-    private void ResetJump()
+    public void SetPosition(Transform pos)
     {
-        if (canJump) return;
-        Debug.Log("Touched");
-        animator.SetBool("Jumping",false);
-        canJump = true;
+        player.transform.position = pos.position;
     }
 
 
@@ -61,9 +65,20 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetButtonDown("Y"))
         {
-
+            fakeDeath = !fakeDeath;
+            animator.SetBool("FakeDeath", fakeDeath);
         }
     }
+
+    private void ResetJump()
+    {
+        if (canJump) return;
+
+        animator.SetBool("Jumping", false);
+        timedJump = 0f;
+        canJump = true;
+    }
+
 
     private void Jump()
     {

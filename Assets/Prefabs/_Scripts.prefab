@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5238519274183314875}
   - component: {fileID: 4477927534617019817}
+  - component: {fileID: 933656444}
   m_Layer: 0
   m_Name: _Scripts
   m_TagString: Untagged
@@ -52,3 +53,19 @@ MonoBehaviour:
   speedRotate: 210
   rotateSensibility: 0.15
   cameraPower: 0.5
+--- !u!114 &933656444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326746311283025971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81cd9d95b665394d8bcd9d266095a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 4477927534617019817}
+  menu: {fileID: 0}
+  transtion: {fileID: 0}
+  currentRespawn: {fileID: 0}
