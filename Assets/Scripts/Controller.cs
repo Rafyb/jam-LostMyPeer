@@ -6,7 +6,6 @@ public class Controller : MonoBehaviour
 {
 
     public GameObject player;
-    public Transform playerPos;
     public GameObject targetView;
 
     public float speed;
@@ -21,8 +20,7 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Si le cube tombe
-        targetView.transform.position = playerPos.transform.position;
+        targetView.transform.position = player.transform.position;
 
         Rotate();
 
@@ -31,6 +29,8 @@ public class Controller : MonoBehaviour
 
     private void Rotate()
     {
+
+
         targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X")*rotationPower,Vector3.up);
         targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * rotationPower, Vector3.right);
 
@@ -45,18 +45,29 @@ public class Controller : MonoBehaviour
             angles.x = 40;
         }
 
+        // Target rotation
         targetView.transform.localEulerAngles = angles;
+       
+
 
     }
 
     private void Move()
     {
+
         float horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float verticallMove = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-        player.transform.position = new Vector3(player.transform.position.x + horizontalMove, player.transform.position.y, player.transform.position.z + verticallMove);
+        if (horizontalMove != 0f || verticallMove != 0f)
+        {
+            // Player rotation
+            player.transform.rotation = Quaternion.Euler(0, targetView.transform.rotation.eulerAngles.y, 0);
+            player.transform.position += (player.transform.forward * verticallMove) + (player.transform.right * horizontalMove);
+        }
 
-        Vector3 rotate = player.transform.localEulerAngles;
-        rotate.x = targetView.transform.localEulerAngles.x;
+
+
+        
+
     }
 }
