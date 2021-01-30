@@ -46,8 +46,9 @@ MonoBehaviour:
   player: {fileID: 0}
   targetView: {fileID: 0}
   detector: {fileID: 0}
+  animator: {fileID: 0}
   speedMove: 7
-  speedJump: 7
+  speedJump: 6
   speedRotate: 210
   rotateSensibility: 0.15
   cameraPower: 0.5

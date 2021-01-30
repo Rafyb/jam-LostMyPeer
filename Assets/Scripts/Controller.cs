@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     public GameObject player;
     public GameObject targetView;
     public BottomDetector detector;
+    public Animator animator;
 
     [Header("Controls")]
     public float speedMove;
@@ -17,14 +18,15 @@ public class Controller : MonoBehaviour
 
     [Header("Camera")]
     public float cameraPower;
-    
 
+    private bool fakeDeath;
     private bool canJump;
 
     // Start is called before the first frame update
     void Start()
     {
         canJump = true;
+        fakeDeath = false;
 
         detector.OnTouchedGround += ResetJump;
     }
@@ -48,23 +50,35 @@ public class Controller : MonoBehaviour
 
     private void ResetJump()
     {
+        if (canJump) return;
+        Debug.Log("Touched");
+        animator.SetBool("Jumping",false);
         canJump = true;
     }
 
 
     private void FakeDead()
     {
-        if (Input.GetButtonDown("Y")) Debug.Log("press");
+        if (Input.GetButtonDown("Y"))
+        {
+
+        }
     }
 
     private void Jump()
     {
         if (Input.GetButtonDown("A") && canJump)
         {
-            Debug.Log("Jump");
             canJump = false;
-            player.GetComponent<Rigidbody>().AddForce(new Vector3(0, speedJump, 0),ForceMode.Impulse);
+            animator.SetBool("Jumping", true);
+            StartCoroutine(JumpAction());
         }
+    }
+
+    IEnumerator JumpAction()
+    {
+        yield return new WaitForSeconds(.2f);
+        player.GetComponent<Rigidbody>().AddForce(new Vector3(0, speedJump, 0), ForceMode.Impulse);
     }
 
     private void Rotate()
@@ -104,11 +118,12 @@ public class Controller : MonoBehaviour
 
         if (horizontalMove != 0f || verticallMove != 0f)
         {
+            animator.SetBool("Walking", true);
             // Player rotation with jostick
-            if(Mathf.Abs(horizontalMove) >= rotateSensibility)
+            if (Mathf.Abs(horizontalMove) >= rotateSensibility)
             {
                 Quaternion rotate = Quaternion.identity;
-                rotate.eulerAngles = new Vector3(270, player.transform.rotation.eulerAngles.y + horizontalMove, 0);
+                rotate.eulerAngles = new Vector3(0, player.transform.rotation.eulerAngles.y + horizontalMove, 0);
                 player.transform.rotation = rotate;
             }
 
@@ -117,6 +132,9 @@ public class Controller : MonoBehaviour
             //player.transform.rotation = Quaternion.Euler(270, targetView.transform.rotation.eulerAngles.y + 90, 0);
 
             player.transform.position += (player.transform.right * verticallMove);
+        } else
+        {
+            animator.SetBool("Walking", false);
         }
 
 
