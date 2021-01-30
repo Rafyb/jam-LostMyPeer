@@ -18,11 +18,18 @@ public class Game : MonoBehaviour
     {
         OpenMenu();
         Respawn();
+
+        playerManager.detector.OnTouchedCheckpoint += SetCheckpoint;
     }
 
     void Respawn()
     {
         playerManager.SetPosition(currentRespawn);
+    }
+
+    void SetCheckpoint(Transform point)
+    {
+        currentRespawn = point;
     }
 
     // Update is called once per frame
