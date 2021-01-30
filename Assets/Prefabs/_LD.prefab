@@ -193,6 +193,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Florian
       objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.314557
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.314557
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.314557
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8816
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445812767770338165, guid: 6ea875b1bca101e47931cc60d2a2e9d2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 68.11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ea875b1bca101e47931cc60d2a2e9d2, type: 3}
 --- !u!4 &6263731798530132707 stripped
