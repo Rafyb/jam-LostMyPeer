@@ -22,6 +22,8 @@ public class Controller : MonoBehaviour
     {
         targetView.transform.position = player.transform.position;
 
+        if (Input.GetButton("Y")) Debug.Log("press");
+
         Rotate();
 
         Move();
@@ -31,11 +33,21 @@ public class Controller : MonoBehaviour
     {
 
 
-        targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X")*rotationPower,Vector3.up);
-        targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * rotationPower, Vector3.right);
 
+        if (Input.GetAxis("Mouse X") != 0f || Input.GetAxis("Mouse Y") != 0f)
+        {
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * (rotationPower*2), Vector3.up);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * (rotationPower*2), Vector3.right);
+        } else
+        {
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RH") * rotationPower, Vector3.up);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RV") * rotationPower, Vector3.right);
+        }
+
+        
         Vector3 angles = targetView.transform.localEulerAngles;
         angles.z = 0;
+
         if (angles.x > 180 && angles.x < 340)
         {
             angles.x = 340;
