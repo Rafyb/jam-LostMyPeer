@@ -19,6 +19,6 @@ public class End : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if (obscurred.Count == 2 && other.gameObject.tag.Equals("Player")) Debug.Log("Gagné");
+        if (obscurred.Count == 2 && other.gameObject.tag.Equals("Player")) isOcurred = false;
     }
 }
