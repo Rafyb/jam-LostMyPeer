@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator transition;
 
     // Update is called once per frame
     public void Play()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(Transition());
+    }
+
+    IEnumerator Transition()
+    {
+        transition.SetTrigger("Hide");
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(1);
     }
 
     public void Quit()
