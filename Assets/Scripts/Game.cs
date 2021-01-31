@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
 
     [Header("Event")]
     public float timing;
+    private bool isOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,20 @@ public class Game : MonoBehaviour
         Respawn();
 
         playerManager.detector.OnTouchedCheckpoint += SetCheckpoint;
+        playerManager.detector.OnFinish += Finish;
     }
 
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void Finish()
+    {
+        StartCoroutine(Transition(1f,"Hide"));
+    }
     void Respawn()
     {
         playerManager.SetPosition(currentRespawn);
@@ -32,21 +45,11 @@ public class Game : MonoBehaviour
         currentRespawn = point;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void OnClickPlay()
-    {
-        StartCoroutine(Transition(1f));
-    }
-
-    IEnumerator Transition(float time)
+    IEnumerator Transition(float time, string type)
     {
         yield return new WaitForSeconds(time);
-        transtion.SetTrigger("blackScreenOn");
+        transtion.SetTrigger(type);
         yield return new WaitForSeconds(time);
 
 
