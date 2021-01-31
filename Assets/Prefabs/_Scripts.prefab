@@ -66,6 +66,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 4477927534617019817}
-  menu: {fileID: 0}
   transtion: {fileID: 0}
   currentRespawn: {fileID: 0}
+  timing: 0

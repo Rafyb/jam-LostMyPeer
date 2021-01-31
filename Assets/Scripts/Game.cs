@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
 
+    [Header("Component")]
     public Controller playerManager;
-    public GameObject menu;
     public Animator transtion;
-
     public Transform currentRespawn;
 
+    [Header("Event")]
+    public float timing;
 
     // Start is called before the first frame update
     void Start()
     {
-        OpenMenu();
         Respawn();
 
         playerManager.detector.OnTouchedCheckpoint += SetCheckpoint;
@@ -40,28 +40,15 @@ public class Game : MonoBehaviour
 
     public void OnClickPlay()
     {
-        StartCoroutine(Transition(1f,0));
+        StartCoroutine(Transition(1f));
     }
 
-    void CloseMenu()
-    {
-        menu.SetActive(false);
-    }
-
-    void OpenMenu()
-    {
-        //menu.SetActive(true);
-    }
-
-    IEnumerator Transition(float time,int end)
+    IEnumerator Transition(float time)
     {
         yield return new WaitForSeconds(time);
         transtion.SetTrigger("blackScreenOn");
         yield return new WaitForSeconds(time);
 
-
-        if (end == 0) CloseMenu();
-        if (end == 1) OpenMenu();
 
     }
 
