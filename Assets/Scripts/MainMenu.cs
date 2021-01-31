@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(Transition());
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("B")) Close();
+    }
+
     IEnumerator Transition()
     {
         transition.SetTrigger("Hide");
