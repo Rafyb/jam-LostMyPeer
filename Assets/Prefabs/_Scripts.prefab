@@ -67,5 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 4477927534617019817}
   transtion: {fileID: 0}
+  boxAnimator: {fileID: 0}
   currentRespawn: {fileID: 0}
-  timing: 0
+  timeBeforeOpen: 20
+  timeStayOpen: 2

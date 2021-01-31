@@ -23,6 +23,12 @@ public class Controller : MonoBehaviour
     private bool canJump;
     private float timedJump;
 
+    public bool isFakeDeath()
+    {
+        return fakeDeath;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +49,7 @@ public class Controller : MonoBehaviour
         targetView.transform.position = pos;
 
         Rotate();
-        FakeDead();
+        if (Input.GetButtonDown("Y")) FakeDead();
 
         if (!fakeDeath)
         {
@@ -61,13 +67,10 @@ public class Controller : MonoBehaviour
     }
 
 
-    private void FakeDead()
+    public void FakeDead()
     {
-        if (Input.GetButtonDown("Y"))
-        {
             fakeDeath = !fakeDeath;
             animator.SetBool("FakeDeath", fakeDeath);
-        }
     }
 
     private void ResetJump()
