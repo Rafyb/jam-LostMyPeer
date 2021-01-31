@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4510521147404952730}
   - component: {fileID: 664083585669180223}
   - component: {fileID: 3374247019318763509}
+  - component: {fileID: -8919100694996790143}
   m_Layer: 0
   m_Name: circuit_plat
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-8919100694996790143
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3878522565807177248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8678823145569952518, guid: 55eabee888bed9e4ab5a8599bae9c4f8, type: 3}
