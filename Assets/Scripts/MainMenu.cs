@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Animator transition;
+    public GameObject CanvasTuto;
 
     // Update is called once per frame
     public void Play()
@@ -23,5 +24,10 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Close ()
+    {
+        CanvasTuto.SetActive(false);
     }
 }
