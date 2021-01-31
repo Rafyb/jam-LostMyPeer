@@ -54,7 +54,7 @@ public class Controller : MonoBehaviour
         if (!fakeDeath)
         {
             Move();
-            if(timedJump > 0.5f) Jump();
+            if(timedJump > 0.2f) Jump();
             else timedJump += Time.deltaTime;
         }
 
