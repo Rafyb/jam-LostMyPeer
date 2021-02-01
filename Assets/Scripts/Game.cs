@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     public Animator transtion;
     public Animator boxAnimator;
     public Transform currentRespawn;
+    public AudioSource ausioSource;
 
     [Header("Event")]
     public float timeBeforeOpen;
@@ -46,7 +47,7 @@ public class Game : MonoBehaviour
             if (timing >= timeBeforeOpen)
             {
                 Open();
-                timing = 0;
+                timing = -10f;
             }
         }
 
@@ -61,12 +62,14 @@ public class Game : MonoBehaviour
 
     void Open()
     {
-        boxAnimator.SetBool("Open", true);
         StartCoroutine(waitAnim()); ;
     }
 
     IEnumerator waitAnim()
     {
+        ausioSource.Play();
+        yield return new WaitForSeconds(3.5f);
+        boxAnimator.SetBool("Open", true);
         yield return new WaitForSeconds(1.5f);
         isOpen = true;
         timing = 0;
@@ -75,6 +78,7 @@ public class Game : MonoBehaviour
     void Close()
     {
         boxAnimator.SetBool("Open", false);
+        ausioSource.Play();
         isOpen = !isOpen;
     }
 

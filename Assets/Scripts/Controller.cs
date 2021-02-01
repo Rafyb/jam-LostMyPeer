@@ -104,8 +104,8 @@ public class Controller : MonoBehaviour
 
         if (Input.GetAxis("Mouse X") != 0f || Input.GetAxis("Mouse Y") != 0f)
         {
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * (cameraPower * 2), Vector3.up);
-            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * (cameraPower * 2), Vector3.right);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * cameraPower , Vector3.up);
+            targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * cameraPower , Vector3.right);
         } else
         {
             targetView.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Joystick_RH") * cameraPower, Vector3.up);

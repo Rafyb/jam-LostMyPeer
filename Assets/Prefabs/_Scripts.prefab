@@ -69,5 +69,6 @@ MonoBehaviour:
   transtion: {fileID: 0}
   boxAnimator: {fileID: 0}
   currentRespawn: {fileID: 0}
+  ausioSource: {fileID: 0}
   timeBeforeOpen: 20
   timeStayOpen: 2
